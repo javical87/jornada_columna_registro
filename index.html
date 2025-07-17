@@ -18,10 +18,6 @@
             background-position: center center; /* Centra la imagen */
             background-repeat: no-repeat; /* Evita que la imagen se repita */
             background-attachment: fixed; /* Mantiene la imagen fija al hacer scroll */
-            /* Eliminada la imagen de fondo y sus propiedades */
-            filter: none;
-            background-blend-mode: normal;
-            opacity: 1;
             
             display: flex;
             justify-content: center;
@@ -33,6 +29,26 @@
             overflow-y: auto; /* Muestra barra de desplazamiento vertical si el contenido excede la altura */
             position: relative;
         }
+
+        /* Overlay semi-transparente para mejorar la legibilidad del texto sobre el fondo */
+        body::before {
+            content: '';
+            position: fixed; /* Fijo para cubrir toda la ventana */
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.4); /* Capa oscura semi-transparente */
+            z-index: 1; /* Asegura que esté por debajo del contenedor de registro */
+        }
+
+        /* Ajuste de la posición de la imagen de fondo para móviles */
+        @media (max-width: 768px) {
+            body {
+                background-position: center top; /* Mueve el foco de la imagen hacia arriba en móviles */
+            }
+        }
+
         /* Contenedor principal del formulario de registro */
         .registration-container {
             max-width: 600px;
@@ -275,7 +291,7 @@
                 <li><i class="fas fa-calendar-alt"></i> <strong>Fecha:</strong> 16 de agosto del 2025</li>
                 <li><i class="fas fa-map-marker-alt"></i> <strong>Lugar:</strong> Auditorio Juana Ramírez La Avanzadora - Edificio PDVSA - ESEM, Maturín - estado Monagas</li>
                 <li><i class="fas fa-clock"></i> <strong>Apertura:</strong> 8:00 am</li>
-                <li><i class="fas fa-id-card"></i> <strong>Acreditación:</strong> 15 de agosto, 4to piso, HUMNT - Cirugía de Columna (Hora: 8:00 am - 1:00 pm)</li>
+                <li><i class="fas fa-id-card"></i> <strong>Acreditación:</strong> 15 de agosto, 4to piso, HUMNT - Cirugía de Columna<br>(Hora: 8:00 am - 1:00 pm)</li>
                 <li><i class="fas fa-phone"></i> <strong>Contactos:</strong> 0414-3943494 / 0424 - 9178903</li>
             </ul>
         </div>
