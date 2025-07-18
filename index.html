@@ -341,7 +341,7 @@
                     <option value="">Selecciona una modalidad</option>
                     <option value="Pago Móvil">Pago Móvil</option>
                     <option value="Transferencia">Transferencia</option>
-                    <option value="Efectivo">Efectivo</option>
+                    <!-- La opción 'Efectivo' ha sido eliminada -->
                 </select>
                 <p id="paymentMethodError" class="error-message">Por favor, selecciona una modalidad de pago.</p>
             </div>
@@ -381,22 +381,7 @@
                     </div>
                 </div>
 
-                <!-- Detalles para Efectivo -->
-                <div id="cashDetails" class="hidden">
-                    <p class="text-gray-700 mb-4">
-                        El pago en efectivo debe realizarse una semana antes del evento.
-                    </p>
-                    <ul class="text-gray-800 text-left mb-4 list-disc list-inside">
-                        <li><i class="fas fa-calendar-alt"></i> <strong>Fecha del evento:</strong> 16 de agosto del 2025</li>
-                        <li><i class="fas fa-calendar-check"></i> <strong>Fecha límite de pago en efectivo:</strong> 9 de agosto del 2025</li>
-                        <li><i class="fas fa-clock"></i> <strong>Inicio:</strong> 7:30 am</li>
-                    </ul>
-                    <p class="text-gray-800 font-semibold mb-2">Monto a cancelar: 1.500,00 Bs</p>
-                    <p class="text-sm text-gray-500 mt-2">
-                        La **Acreditación y Retiro de Materiales** (carpetas, bolígrafos y distintivos) se realizará el día antes del evento.
-                        Por favor, ten el monto exacto para agilizar el proceso.
-                    </p>
-                </div>
+                <!-- La sección de detalles para Efectivo ha sido eliminada -->
             </div>
 
             <button type="submit" class="submit-button">Enviar Registro</button>
@@ -420,7 +405,7 @@
             const paymentDetailsSection = document.getElementById('paymentDetailsSection');
             const pagoMovilDetails = document.getElementById('pagoMovilDetails');
             const transferDetails = document.getElementById('transferDetails');
-            const cashDetails = document.getElementById('cashDetails');
+            // const cashDetails = document.getElementById('cashDetails'); // Eliminado: ya no se necesita
 
             const pagoMovilReferenceInput = document.getElementById('pagoMovilReference');
             const transferReferenceInput = document.getElementById('transferReference');
@@ -436,7 +421,7 @@
                 paymentDetailsSection.classList.add('hidden');
                 pagoMovilDetails.classList.add('hidden');
                 transferDetails.classList.add('hidden');
-                cashDetails.classList.add('hidden');
+                // cashDetails.classList.add('hidden'); // Eliminado: ya no se necesita
 
                 // Asegurarse de que los campos de referencia no sean requeridos por defecto
                 pagoMovilReferenceInput.removeAttribute('required');
@@ -454,12 +439,10 @@
                         pagoMovilDetails.classList.remove('hidden');
                         pagoMovilReferenceInput.setAttribute('required', 'required'); // Hacer requerido solo si es Pago Móvil
                     } else if (selectedMethod === 'Transferencia') {
-                        transferDetails.classList.remove('hidden'); // Asegúrate de que esta línea esté presente
+                        transferDetails.classList.remove('hidden');
                         transferReferenceInput.setAttribute('required', 'required'); // Hacer requerido solo si es Transferencia
-                    } else if (selectedMethod === 'Efectivo') {
-                        cashDetails.classList.remove('hidden');
-                        // No hay campo de referencia para efectivo, no se marca como requerido
                     }
+                    // La lógica para 'Efectivo' ha sido eliminada
                 }
             }
 
@@ -545,7 +528,7 @@
                         transactionReference = transferReferenceInput.value.trim();
                     }
                 }
-                // Para Efectivo, transactionReference se mantiene vacío, lo cual es correcto.
+                // La lógica para 'Efectivo' ha sido eliminada, por lo que transactionReference se mantiene vacío para esa opción.
 
                 if (isValid) {
                     document.getElementById('loadingMessage').style.display = 'block'; // Mostrar mensaje de carga
